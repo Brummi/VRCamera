@@ -1,6 +1,7 @@
 # VRCamera
 Implementation of a VR camera for LibGDX. 
-It is easy to use, works only with LibGDX libraries and cames with a head tracker.
+It is easy to use, works only with LibGDX libraries and comes with a head tracker.
+Especially suitable for Android and Google Cardboard.
 
 The VRCamera class enables you to create VR applications with the LibGDX framework. 
 
