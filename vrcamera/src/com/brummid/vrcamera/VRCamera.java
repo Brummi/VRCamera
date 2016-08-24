@@ -344,4 +344,31 @@ public class VRCamera
     public Vector3 getRightPosition() {
         return rightPosition;
     }
+
+    public void resize(float width, float height){
+        screenWidth = Gdx.graphics.getWidth();
+        screenHeight = Gdx.graphics.getHeight();
+
+        resume();
+    }
+
+    public void resume(){
+        leftCam = new PerspectiveCamera();
+        rightCam = new PerspectiveCamera();
+
+        leftBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, true);
+        rightBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, true);
+
+        setViewportWidth(screenWidth);
+        setViewportHeight(screenHeight);
+
+        setFieldOfView(fieldOfView);
+        setNear(near);
+        setFar(far);
+        setEyeDistance(eyeDistance);
+
+        setToRotationRad(yaw, pitch, roll);
+
+        update();
+    }
 }

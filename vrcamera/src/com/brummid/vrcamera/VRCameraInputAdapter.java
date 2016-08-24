@@ -15,6 +15,7 @@ public class VRCameraInputAdapter
     private float mYaw, mPitch, mRoll;
     private float calibYaw, calibPitch, calibRoll;
     private float factorYaw, factorPitch, factorRoll;
+    private float saveYaw, savePitch, saveRoll;
 
     private Interpolator yawInterpolator, pitchInterpolator, rollInterpolator;
     private int interpolatorSize;
@@ -41,6 +42,10 @@ public class VRCameraInputAdapter
         factorPitch = 1;
         factorRoll = 1;
 
+        saveYaw = yaw;
+        savePitch = pitch;
+        saveRoll = roll;
+
         yawInterpolator = new Interpolator(4);
         pitchInterpolator = new Interpolator(4);
         rollInterpolator = new Interpolator(4);
@@ -49,6 +54,13 @@ public class VRCameraInputAdapter
     }
 
     public void update(float delta){
+        if(Float.isNaN(yaw))yaw = saveYaw;
+        else saveYaw = yaw;
+        if(Float.isNaN(pitch))pitch = savePitch;
+        else savePitch = pitch;
+        if(Float.isNaN(roll))roll = saveRoll;
+        else saveRoll = roll;
+
         mYaw += Gdx.input.getGyroscopeX() * delta % ((float)Math.PI * 2);
 
         mPitch = Gdx.input.getAccelerometerZ() / getTotalAcceleration();
@@ -68,6 +80,10 @@ public class VRCameraInputAdapter
         dYaw = yawInterpolator.calculate(mYaw - yaw, delta);
         dPitch = pitchInterpolator.calculate((mPitch + Gdx.input.getGyroscopeY() * delta) / 2f, delta);
         dRoll = rollInterpolator.calculate((mRoll + Gdx.input.getGyroscopeZ() * delta) / 2f, delta);
+
+        if(Float.isNaN(dYaw))dYaw = 0;
+        if(Float.isNaN(dPitch))dPitch = 0;
+        if(Float.isNaN(dRoll))dRoll = 0;
 
         yaw += dYaw;
         pitch += dPitch;
