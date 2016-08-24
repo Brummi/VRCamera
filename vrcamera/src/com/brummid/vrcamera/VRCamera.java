@@ -61,7 +61,7 @@ public class VRCamera
 
         yaw = 0;
         pitch = 0;
-        roll = 0;
+        roll = (float)Math.PI;
 
         leftPosition = new Vector3(0, 0, 0);
         rightPosition = new Vector3(0, 0, 0);
@@ -82,8 +82,8 @@ public class VRCamera
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
 
-        leftBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, false);
-        rightBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, false);
+        leftBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, true);
+        rightBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, true);
 
         this.renderer = renderer;
     }

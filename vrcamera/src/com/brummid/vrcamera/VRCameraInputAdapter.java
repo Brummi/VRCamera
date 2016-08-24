@@ -74,8 +74,8 @@ public class VRCameraInputAdapter
         roll += dRoll;
 
         cam.rotateRad(
-                factorYaw * dYaw,
-                factorPitch * dPitch,
+                (-factorYaw) * dYaw,
+                (-factorPitch) * dPitch,
                 factorRoll * dRoll
         );
 
