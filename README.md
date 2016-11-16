@@ -13,6 +13,6 @@ For head tracking you can use the VRCameraInputAdapter class.
 It rotates the camera according to gyroscope / accelerometer values. It needs to be updated as often as possible to achieve the best results.
 If you are using this headtracker, do not forget to enable the gyroscope in the AndroidLauncher class.
 
-You can find a usage example <a href="https://github.com/Brummi/VRDemo">here</a>.
+You can find an usage example <a href="https://github.com/Brummi/VRDemo">here</a>.
 
 Youtube: https://www.youtube.com/watch?v=yGx5q6M0_fM
